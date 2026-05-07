@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI-Powered Materials Modernization — Briefing v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* TutorABC palette */
+    --abc-main-blue: #003BFF;
+    --abc-dark-blue: #112F82;
+    --abc-deep-blue: #041954;
+    --abc-cornflower: #8BA1F1;
+    --abc-baby: #D1DBFF;
+    --abc-light-blue: #EDF1FF;
+    --abc-very-light: #F7F8FF;
+    --abc-aqua: #92FFFF;
+    --abc-dark-pink: #DD5DD5;
+    --abc-error: #EE5A50;
+    --abc-black: #080808;
+    --abc-dark-gray: #333333;
+    --abc-gray: #555555;
+    --abc-dim-gray: #777777;
+    --abc-feather-gray: #DDDDDD;
+    --abc-very-light-gray: #F8F8F8;
+
+    --bg: #FBFCFE;
+    --paper: #FFFFFF;
+    --ink: var(--abc-black);
+    --ink-soft: var(--abc-dark-gray);
+    --ink-muted: var(--abc-dim-gray);
+    --rule: var(--abc-feather-gray);
+    --rule-soft: rgba(8,8,8,0.08);
+    --accent: var(--abc-main-blue);
+    --accent-deep: var(--abc-deep-blue);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    font-weight: 400;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Language switcher */
+  body.lang-en .zh-only { display: none; }
+  body.lang-zh .en-only { display: none; }
+
+  body.lang-zh .lede,
+  body.lang-zh .activity-desc,
+  body.lang-zh .body-prose,
+  body.lang-zh .r-desc,
+  body.lang-zh .r-mit,
+  body.lang-zh .cell-rule,
+  body.lang-zh .ax-text,
+  body.lang-zh .touch-desc,
+  body.lang-zh .stage-detail,
+  body.lang-zh .activity-criteria,
+  body.lang-zh .phase-desc,
+  body.lang-zh .tier-handling,
+  body.lang-zh .tr-text,
+  body.lang-zh .s-text {
+    line-height: 1.7;
+  }
+
+  body.lang-zh h1.brief-title {
+    line-height: 1.2;
+    font-size: 50px;
+  }
+
+  .lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background-color: var(--abc-deep-blue);
+    background-image: radial-gradient(circle at 2px 2px, rgba(146, 255, 255, 0.22) 1px, transparent 1.2px);
+    background-size: 12px 12px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.18s ease;
+    box-shadow: 0 2px 8px rgba(4, 25, 84, 0.15);
+  }
+  .lang-toggle:hover {
+    background-color: var(--abc-main-blue);
+  }
+  .lang-toggle:active {
+    transform: translateY(1px);
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    background: var(--paper);
+    padding: 60px 88px;
+    border-left: 1px solid var(--rule-soft);
+    border-right: 1px solid var(--rule-soft);
+  }
+
+  /* Header */
+  header.brief-header {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--abc-deep-blue);
+    padding-bottom: 28px;
+    margin-bottom: 56px;
+  }
+
+  .hero-dots {
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    width: 320px;
+    height: 220px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .top-meta, h1.brief-title {
+    position: relative;
+    z-index: 1;
+  }
+
+  .top-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 32px;
+  }
+
+  .top-meta .brand-mark {
+    color: var(--abc-main-blue);
+    font-weight: 500;
+  }
+
+  h1.brief-title {
+    font-family: 'Fraunces', 'Noto Sans TC', serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--abc-deep-blue);
+  }
+
+  h1.brief-title em {
+    font-style: italic;
+    color: var(--abc-main-blue);
+    font-weight: 400;
+  }
+
+  body.lang-zh h1.brief-title em {
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* Sections */
+  section.brief-section { margin-bottom: 64px; }
+
+  .section-marker {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+  }
+
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--abc-main-blue);
+    line-height: 1;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', 'Noto Sans TC', serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--abc-deep-blue);
+    line-height: 1.2;
+  }
+
+  body.lang-zh .section-title {
+    font-weight: 500;
+  }
+
+  .section-kicker {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .lede {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--abc-deep-blue);
+    max-width: 820px;
+    margin-bottom: 22px;
+  }
+
+  .lede strong { font-weight: 600; }
+
+  /* Big stats */
+  .big-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule-soft);
+    margin: 24px 0 28px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .big-stat { background: var(--paper); padding: 24px 22px; }
+
+  .big-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    line-height: 1;
+    font-weight: 400;
+    color: var(--abc-deep-blue);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .big-stat .num em {
+    font-style: italic;
+    color: var(--abc-main-blue);
+  }
+
+  .big-stat .label {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* Inventory tables */
+  .track-block { margin: 24px 0; }
+
+  .track-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .track-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    background: var(--abc-main-blue);
+    color: white;
+    font-weight: 500;
+    border-radius: 3px;
+  }
+
+  .track-tag.content { background: var(--abc-dark-pink); }
+
+  .track-title {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--abc-deep-blue);
+  }
+
+  .track-count {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  table.inventory {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+  table.inventory thead th {
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding: 10px 12px 10px 0;
+    border-bottom: 1.5px solid var(--abc-deep-blue);
+  }
+
+  table.inventory tbody td {
+    padding: 11px 12px 11px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+
+  table.inventory td.line-cell {
+    font-weight: 600;
+    color: var(--abc-deep-blue);
+    width: 80px;
+  }
+
+  table.inventory td.product-cell { color: var(--ink); }
+
+  table.inventory td.count-cell {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--abc-deep-blue);
+    width: 100px;
+  }
+
+  table.inventory td.year-cell {
+    width: 140px;
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+
+  table.inventory tr.subtotal td {
+    background: var(--abc-light-blue);
+    font-weight: 600;
+    color: var(--abc-deep-blue);
+    border-bottom: 1.5px solid var(--abc-deep-blue);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  table.inventory tr.subtotal td.product-cell { font-style: italic; }
+
+  /* Section labels */
+  .above-stack-label {
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--abc-main-blue);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  /* Pipeline flow */
+  .flow {
+    margin: 18px 0 28px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .flow-stage {
+    border: 1px solid var(--rule);
+    padding: 20px 18px;
+    background: var(--paper);
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  .flow-stage.start { background: var(--abc-very-light-gray); }
+
+  .flow-stage.middle {
+    background-color: var(--abc-main-blue);
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.14) 1.2px, transparent 1.5px);
+    background-size: 16px 16px;
+    color: var(--paper);
+    border-color: var(--abc-main-blue);
+  }
+
+  .flow-stage.end {
+    background: var(--abc-light-blue);
+    border-color: var(--abc-cornflower);
+  }
+
+  .flow-stage .stage-label {
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .flow-stage.middle .stage-label { color: rgba(255,255,255,0.7); }
+  .flow-stage.end .stage-label { color: var(--abc-main-blue); }
+
+  .flow-stage .stage-name {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    color: var(--abc-deep-blue);
+  }
+
+  .flow-stage.middle .stage-name { color: var(--paper); }
+
+  .flow-stage .stage-detail {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  .flow-stage.middle .stage-detail { color: rgba(255,255,255,0.85); }
+  .flow-stage.end .stage-detail { color: var(--abc-deep-blue); opacity: 0.75; }
+
+  .flow-arrow {
+    align-self: center;
+    width: 28px;
+    text-align: center;
+    font-size: 22px;
+    color: var(--abc-cornflower);
+    font-weight: 500;
+  }
+
+  /* Touchpoints */
+  .touchpoints {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 8px;
+  }
+
+  .touch {
+    border-top: 2px solid var(--abc-main-blue);
+    padding-top: 14px;
+  }
+
+  .touch-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--abc-main-blue);
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .touch-name {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--abc-deep-blue);
+    margin-bottom: 5px;
+  }
+
+  .touch-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* Triage matrix */
+  .matrix-wrap {
+    margin: 18px 0 12px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: 1fr 60px;
+    gap: 0;
+  }
+
+  .matrix-y-label {
+    grid-row: 1; grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .matrix-grid {
+    grid-row: 1; grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .matrix-cell {
+    background: var(--paper);
+    padding: 20px 24px;
+    min-height: 145px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .matrix-cell.do { background: var(--abc-light-blue); }
+
+  .matrix-cell .cell-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    align-self: flex-start;
+    color: white;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .matrix-cell.do .cell-tag { background: var(--abc-main-blue); }
+  .matrix-cell.defer .cell-tag {
+    background: var(--abc-cornflower);
+    color: var(--abc-deep-blue);
+  }
+  .matrix-cell.watch .cell-tag { background: var(--abc-gray); }
+  .matrix-cell.deprecate .cell-tag { background: var(--abc-error); }
+
+  .matrix-cell .cell-title {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--abc-deep-blue);
+  }
+
+  .matrix-cell .cell-rule {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .matrix-x-label {
+    grid-row: 2; grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    text-align: center;
+    padding-top: 12px;
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .triage-axis {
+    margin: 12px 0 12px;
+    padding: 16px 20px;
+    background: var(--abc-very-light-gray);
+    border-radius: 6px;
+    border: 1px solid var(--rule-soft);
+  }
+
+  .triage-axis .axis-title {
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--abc-main-blue);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .triage-axis .axis-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .triage-axis .axis-item .ax-label {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--abc-deep-blue);
+    margin-bottom: 3px;
+  }
+
+  .triage-axis .axis-item .ax-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* Dot pattern callouts */
+  .triage-result, .savings-callout {
+    background-color: var(--abc-deep-blue);
+    background-image: radial-gradient(circle at 2px 2px, rgba(146, 255, 255, 0.18) 1.2px, transparent 1.5px);
+    background-size: 18px 18px;
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    border-radius: 6px;
+  }
+
+  .triage-result {
+    margin-top: 18px;
+    padding: 20px 26px;
+  }
+
+  .triage-result .tr-num {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--abc-aqua);
+  }
+
+  .triage-result .tr-text {
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.9);
+    max-width: 560px;
+  }
+
+  .triage-result .tr-text strong {
+    color: var(--abc-aqua);
+    font-weight: 500;
+  }
+
+  /* Roadmap */
+  .roadmap {
+    margin: 18px 0 8px;
+    border-top: 2px solid var(--abc-deep-blue);
+    border-bottom: 2px solid var(--abc-deep-blue);
+    padding: 22px 0;
+  }
+
+  .roadmap-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 22px;
+  }
+
+  .phase { padding: 0 6px; }
+
+  .phase-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--abc-main-blue);
+    margin-bottom: 7px;
+    font-weight: 600;
+  }
+
+  .phase-title {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--abc-deep-blue);
+  }
+
+  .phase-dur {
+    font-size: 14px;
+    color: var(--abc-dark-pink);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .phase-desc {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .phase-desc strong {
+    color: var(--abc-deep-blue);
+    font-weight: 600;
+  }
+
+  .phase-tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .track-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  .track-row .tr-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    background: var(--abc-main-blue);
+    color: white;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .track-row .tr-tag.b { background: var(--abc-dark-pink); }
+
+  /* POC timeline */
+  .poc-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    margin: 22px 0;
+  }
+
+  .poc-week {
+    border-top: 1px solid var(--rule);
+    padding: 16px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--abc-main-blue);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+
+  .poc-detail {
+    border-top: 1px solid var(--rule);
+    padding: 16px 0 16px 24px;
+    border-left: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .poc-detail.gate {
+    background: var(--abc-light-blue);
+    margin-left: -1px;
+    border-left: 4px solid var(--abc-main-blue);
+    padding-left: 21px;
+  }
+
+  .poc-detail .activity {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--abc-deep-blue);
+    margin-bottom: 4px;
+  }
+
+  .poc-detail .gate-label {
+    display: inline-block;
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--abc-main-blue);
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .poc-detail .activity-desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .poc-detail .activity-criteria {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dotted var(--abc-cornflower);
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .poc-detail .activity-criteria b {
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--abc-deep-blue);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Effort comparison */
+  .effort-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule-soft);
+    margin: 18px 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .effort-card { background: var(--paper); padding: 28px 28px; }
+
+  .effort-card.highlighted {
+    background-color: var(--abc-main-blue);
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.14) 1.2px, transparent 1.5px);
+    background-size: 18px 18px;
+    color: var(--paper);
+  }
+
+  .effort-card .e-mode {
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .effort-card.highlighted .e-mode { color: rgba(255,255,255,0.8); }
+
+  .effort-card .e-num {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    color: var(--abc-deep-blue);
+  }
+
+  .effort-card.highlighted .e-num { color: var(--paper); }
+
+  .effort-card .e-unit {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+
+  .effort-card.highlighted .e-unit { color: rgba(255,255,255,0.9); }
+
+  .effort-card .e-breakdown {
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 14px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .effort-card.highlighted .e-breakdown {
+    border-top-color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.92);
+  }
+
+  .e-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .e-row .e-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .savings-callout {
+    margin-top: 4px;
+    padding: 24px 28px;
+  }
+
+  .savings-callout .s-num {
+    font-family: 'Fraunces', serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: var(--abc-aqua);
+    line-height: 1;
+  }
+
+  .savings-callout .s-text {
+    font-size: 16px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.55;
+    max-width: 560px;
+  }
+
+  .savings-callout .s-text strong {
+    color: var(--abc-aqua);
+    font-weight: 500;
+  }
+
+  .tier-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+
+  .tier-row:last-child { border-bottom: none; }
+
+  .tier-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--abc-dark-pink);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .tier-name {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--abc-deep-blue);
+  }
+
+  .tier-handling {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* Risks */
+  .risks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 32px;
+    margin-top: 18px;
+  }
+
+  .risk {
+    border-top: 2px solid var(--abc-main-blue);
+    padding-top: 14px;
+  }
+
+  .risk .r-name {
+    font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--abc-deep-blue);
+    margin-bottom: 7px;
+  }
+
+  .risk .r-desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 7px;
+  }
+
+  .risk .r-mit {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  .risk .r-mit em {
+    font-style: italic;
+    color: var(--abc-main-blue);
+    font-weight: 500;
+  }
+
+  /* Footer */
+  footer.brief-footer {
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 2px solid var(--abc-deep-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  footer.brief-footer .f-end {
+    font-family: 'Fraunces', 'Noto Sans TC', serif;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 14px;
+    color: var(--abc-main-blue);
+  }
+
+  body.lang-zh footer.brief-footer .f-end { font-style: normal; }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .lang-toggle { display: none; }
+    .page { box-shadow: none; max-width: none; margin: 0; padding: 36px 50px; border: none; }
+    section.brief-section { page-break-inside: avoid; margin-bottom: 40px; }
+    .matrix-cell, .effort-card, .flow-stage { page-break-inside: avoid; }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .page { padding: 40px 28px; }
+    h1.brief-title { font-size: 36px; }
+    body.lang-zh h1.brief-title { font-size: 34px; }
+    .hero-dots { width: 200px; height: 140px; opacity: 0.65; }
+    .big-stats { grid-template-columns: 1fr; }
+    .effort-compare { grid-template-columns: 1fr; }
+    .risks { grid-template-columns: 1fr; }
+    .matrix-wrap { grid-template-columns: 50px 1fr; }
+    .flow { grid-template-columns: 1fr; }
+    .flow-arrow { transform: rotate(90deg); padding: 8px 0; }
+    .roadmap-row { grid-template-columns: 1fr; gap: 28px; }
+    .triage-axis .axis-list { grid-template-columns: 1fr; gap: 10px; }
+    .poc-grid { grid-template-columns: 60px 1fr; }
+    .lang-toggle { top: 12px; right: 12px; padding: 7px 14px; font-size: 11px; }
+  }
+</style>
+</head>
+
+<body class="lang-en">
+
+<!-- LANGUAGE TOGGLE -->
+<button class="lang-toggle" onclick="toggleLang()" id="langBtn" aria-label="Switch language">
+  <span class="en-only">中文</span>
+  <span class="zh-only">EN</span>
+</button>
+
+<div class="page">
+
+<!-- HEADER -->
+<header class="brief-header">
+  <svg class="hero-dots" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="290" cy="22" r="3.5" fill="#92FFFF" opacity="0.75"/>
+    <circle cx="210" cy="32" r="2.5" fill="#92FFFF" opacity="0.65"/>
+    <circle cx="170" cy="62" r="3" fill="#92FFFF" opacity="0.55"/>
+    <circle cx="298" cy="86" r="2" fill="#92FFFF" opacity="0.7"/>
+    <circle cx="200" cy="170" r="2.5" fill="#92FFFF" opacity="0.55"/>
+    <circle cx="110" cy="56" r="2" fill="#92FFFF" opacity="0.5"/>
+    <circle cx="76" cy="120" r="2" fill="#92FFFF" opacity="0.45"/>
+    <circle cx="248" cy="56" r="3" fill="#8BA1F1" opacity="0.65"/>
+    <circle cx="276" cy="128" r="3.5" fill="#8BA1F1" opacity="0.55"/>
+    <circle cx="232" cy="186" r="2.5" fill="#8BA1F1" opacity="0.45"/>
+    <circle cx="148" cy="124" r="3" fill="#8BA1F1" opacity="0.5"/>
+    <circle cx="86" cy="86" r="2" fill="#8BA1F1" opacity="0.45"/>
+    <circle cx="160" cy="22" r="2.5" fill="#8BA1F1" opacity="0.5"/>
+    <circle cx="266" cy="68" r="2" fill="#003BFF" opacity="0.45"/>
+    <circle cx="186" cy="96" r="2.5" fill="#003BFF" opacity="0.4"/>
+    <circle cx="226" cy="148" r="2" fill="#003BFF" opacity="0.45"/>
+    <circle cx="124" cy="34" r="2" fill="#003BFF" opacity="0.4"/>
+    <circle cx="64" cy="40" r="2.5" fill="#003BFF" opacity="0.4"/>
+    <circle cx="116" cy="170" r="2" fill="#003BFF" opacity="0.35"/>
+    <circle cx="174" cy="200" r="2" fill="#DD5DD5" opacity="0.45"/>
+    <circle cx="252" cy="108" r="2" fill="#DD5DD5" opacity="0.4"/>
+    <circle cx="48" cy="170" r="2" fill="#DD5DD5" opacity="0.35"/>
+  </svg>
+
+  <div class="top-meta">
+    <span class="brand-mark"><span class="en-only">TutorABC · R&amp;D</span><span class="zh-only">TutorABC · 研發部</span></span>
+    <span><span class="en-only">For: CEO review · 08 May 2026</span><span class="zh-only">對象：CEO Review · 2026/05/08</span></span>
+  </div>
+  <h1 class="brief-title">
+    <span class="en-only">Modernizing teaching materials,<br/><em>at scale, with AI.</em></span>
+    <span class="zh-only">教材全面翻新，<br/><em>AI 規模化執行</em></span>
+  </h1>
+</header>
+
+<!-- 01 WHY -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">01</span>
+    <span class="section-title"><span class="en-only">Why now</span><span class="zh-only">為什麼現在做</span></span>
+    <span class="section-kicker"><span class="en-only">Context</span><span class="zh-only">背景</span></span>
+  </div>
+
+  <p class="lede">
+    <span class="en-only">Our teaching materials are visually and editorially aging. Some AI Personalization content dates back to 1998. <strong>Manual rework cannot scale to 47K materials</strong> — we need an AI batch approach that keeps teaching quality high and moves fast.</span>
+    <span class="zh-only">我們的教材在視覺與內容上都已老舊，部分 AI Personalization 教材最早可追溯到 1998 年。<strong>47K 份教材無法靠人工逐份翻新</strong>——需要 AI 批次處理，在維持教學品質的同時快速執行。</span>
+  </p>
+</section>
+
+<!-- 02 SCALE -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">02</span>
+    <span class="section-title"><span class="en-only">Scale &amp; scope</span><span class="zh-only">規模與範圍</span></span>
+    <span class="section-kicker"><span class="en-only">Inventory</span><span class="zh-only">盤點</span></span>
+  </div>
+
+  <div class="big-stats">
+    <div class="big-stat">
+      <div class="num">46.8<em>K</em></div>
+      <div class="label">
+        <span class="en-only">Teaching materials<br/>in scope</span>
+        <span class="zh-only">教材總量</span>
+      </div>
+    </div>
+    <div class="big-stat">
+      <div class="num">2.6<em>K</em></div>
+      <div class="label">
+        <span class="en-only">Pure visual<br/>refresh</span>
+        <span class="zh-only">純視覺翻新</span>
+      </div>
+    </div>
+    <div class="big-stat">
+      <div class="num">44.2<em>K</em></div>
+      <div class="label">
+        <span class="en-only">Visual + content<br/>(AI Personalization)</span>
+        <span class="zh-only">視覺＋內容<br/>(AI Personalization)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Track A -->
+  <div class="track-block">
+    <div class="track-header">
+      <span class="track-tag">Track A</span>
+      <span class="track-title"><span class="en-only">Pure visual refresh</span><span class="zh-only">純視覺翻新</span></span>
+      <span class="track-count">≈ 2,607 <span class="en-only">materials</span><span class="zh-only">份</span></span>
+    </div>
+    <table class="inventory">
+      <thead>
+        <tr>
+          <th><span class="en-only">Line</span><span class="zh-only">產品線</span></th>
+          <th><span class="en-only">Product</span><span class="zh-only">產品</span></th>
+          <th style="text-align:right"><span class="en-only">Materials</span><span class="zh-only">份數</span></th>
+          <th><span class="en-only">Vintage</span><span class="zh-only">年份</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="line-cell">Adult</td><td class="product-cell">Pre-Oxford</td><td class="count-cell">156</td><td class="year-cell">2025</td></tr>
+        <tr><td class="line-cell">Adult</td><td class="product-cell">Oxford Speak Now</td><td class="count-cell">128</td><td class="year-cell">2024</td></tr>
+        <tr><td class="line-cell">Adult</td><td class="product-cell">Cambridge</td><td class="count-cell">33</td><td class="year-cell">2024</td></tr>
+        <tr><td class="line-cell">Adult</td><td class="product-cell">Exam Prep — TOEIC</td><td class="count-cell">32</td><td class="year-cell">2023-24</td></tr>
+        <tr><td class="line-cell">Adult</td><td class="product-cell">Exam Prep — TOEFL</td><td class="count-cell">36</td><td class="year-cell">2023-24</td></tr>
+        <tr><td class="line-cell">Adult</td><td class="product-cell">Exam Prep — IELTS</td><td class="count-cell">26</td><td class="year-cell">2023-24</td></tr>
+        <tr><td class="line-cell">Kids</td><td class="product-cell">NatGeo</td><td class="count-cell">156</td><td class="year-cell">2024</td></tr>
+        <tr><td class="line-cell">Kids</td><td class="product-cell">Kids</td><td class="count-cell">156</td><td class="year-cell">2024</td></tr>
+        <tr><td class="line-cell">JR</td><td class="product-cell">Oxford Let's Begin</td><td class="count-cell">36</td><td class="year-cell">2026</td></tr>
+        <tr><td class="line-cell">JR</td><td class="product-cell">Oxford Let's Go</td><td class="count-cell">216</td><td class="year-cell">2026</td></tr>
+        <tr><td class="line-cell">JR</td><td class="product-cell">Oxford Show &amp; Tell</td><td class="count-cell">112</td><td class="year-cell">2026</td></tr>
+        <tr><td class="line-cell">JR</td><td class="product-cell">Oxford Discover 25min</td><td class="count-cell">432</td><td class="year-cell">2026</td></tr>
+        <tr><td class="line-cell">JR</td><td class="product-cell">Oxford Discover 45min</td><td class="count-cell">360</td><td class="year-cell">2024-25</td></tr>
+        <tr><td class="line-cell">Teens</td><td class="product-cell">Cambridge Prepare!</td><td class="count-cell">728</td><td class="year-cell">2024-25</td></tr>
+        <tr class="subtotal"><td></td><td class="product-cell"><span class="en-only">Track A subtotal</span><span class="zh-only">Track A 小計</span></td><td class="count-cell">2,607</td><td class="year-cell">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Track B -->
+  <div class="track-block">
+    <div class="track-header">
+      <span class="track-tag content">Track B</span>
+      <span class="track-title"><span class="en-only">Visual + content optimization</span><span class="zh-only">視覺＋內容優化</span></span>
+      <span class="track-count">≈ 44,198 <span class="en-only">materials</span><span class="zh-only">份</span></span>
+    </div>
+    <table class="inventory">
+      <thead>
+        <tr>
+          <th><span class="en-only">Line</span><span class="zh-only">產品線</span></th>
+          <th><span class="en-only">Product</span><span class="zh-only">產品</span></th>
+          <th style="text-align:right"><span class="en-only">Materials</span><span class="zh-only">份數</span></th>
+          <th><span class="en-only">Vintage</span><span class="zh-only">年份</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="line-cell">Adult</td><td class="product-cell">AI Personalization</td><td class="count-cell">23,679</td><td class="year-cell">1998 — 2025</td></tr>
+        <tr><td class="line-cell">JR</td><td class="product-cell">AI Personalization</td><td class="count-cell">19,895</td><td class="year-cell">1998 — 2025</td></tr>
+        <tr><td class="line-cell">Teens</td><td class="product-cell">AI Personalization</td><td class="count-cell">624</td><td class="year-cell">1998</td></tr>
+        <tr class="subtotal"><td></td><td class="product-cell"><span class="en-only">Track B subtotal</span><span class="zh-only">Track B 小計</span></td><td class="count-cell">44,198</td><td class="year-cell">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 03 TECHNICAL -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">03</span>
+    <span class="section-title"><span class="en-only">How AI does it</span><span class="zh-only">AI 如何執行</span></span>
+    <span class="section-kicker"><span class="en-only">Technical feasibility</span><span class="zh-only">技術可行性</span></span>
+  </div>
+
+  <p class="lede">
+    <span class="en-only"><strong>Feasible.</strong> The path is PowerPoint → HTML → Image. HTML is our long-term source of truth. The image keeps today's platform running. When the platform later supports HTML, we don't have to redo this work.</span>
+    <span class="zh-only"><strong>可行。</strong>路徑：PowerPoint → HTML → 圖片。HTML 是長期 source of truth，圖片用來相容目前的教學平台。等平台未來支援 HTML，我們不需要重做這份工作。</span>
+  </p>
+
+  <div class="flow">
+    <div class="flow-stage start">
+      <div class="stage-label"><span class="en-only">Source</span><span class="zh-only">來源</span></div>
+      <div class="stage-name"><span class="en-only">Old PowerPoint</span><span class="zh-only">舊版 PowerPoint</span></div>
+      <div class="stage-detail"><span class="en-only">Existing materials, current state</span><span class="zh-only">現存教材，當前狀態</span></div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-stage middle">
+      <div class="stage-label">AI Pipeline</div>
+      <div class="stage-name"><span class="en-only">Parse · Classify · Redesign · QA</span><span class="zh-only">解析 · 分類 · 重新設計 · QA</span></div>
+      <div class="stage-detail"><span class="en-only">Four AI touchpoints, batch automated</span><span class="zh-only">四個 AI 介入點，全自動批次處理</span></div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-stage end">
+      <div class="stage-label"><span class="en-only">Output</span><span class="zh-only">產出</span></div>
+      <div class="stage-name"><span class="en-only">HTML + 1920×1080 image</span><span class="zh-only">HTML + 1920×1080 圖片</span></div>
+      <div class="stage-detail"><span class="en-only">Image now, HTML for tomorrow</span><span class="zh-only">圖片給現在，HTML 給未來</span></div>
+    </div>
+  </div>
+
+  <p class="above-stack-label" style="margin: 22px 0 10px;">
+    <span class="en-only">Where AI does the work</span>
+    <span class="zh-only">AI 的四個介入點</span>
+  </p>
+
+  <div class="touchpoints">
+    <div class="touch">
+      <div class="touch-num">01</div>
+      <div class="touch-name"><span class="en-only">Read old material</span><span class="zh-only">讀取舊教材</span></div>
+      <div class="touch-desc"><span class="en-only">Extract text, images and structure into a clean format.</span><span class="zh-only">從原 PPT 抽取文字、圖片、結構，轉成乾淨格式。</span></div>
+    </div>
+    <div class="touch">
+      <div class="touch-num">02</div>
+      <div class="touch-name"><span class="en-only">Classify each page</span><span class="zh-only">頁面分類</span></div>
+      <div class="touch-desc"><span class="en-only">Vocabulary, dialogue, grammar, exercise — to apply the right layout.</span><span class="zh-only">單字、對話、文法、練習——分類後套用對應版型。</span></div>
+    </div>
+    <div class="touch">
+      <div class="touch-num">03</div>
+      <div class="touch-name"><span class="en-only">Rebuild with new design</span><span class="zh-only">用新設計重建</span></div>
+      <div class="touch-desc"><span class="en-only">Render in HTML using our visual standard. Old layouts replaced.</span><span class="zh-only">依視覺規範重新生成 HTML，舊版面捨棄。</span></div>
+    </div>
+    <div class="touch">
+      <div class="touch-num">04</div>
+      <div class="touch-name"><span class="en-only">Verify output</span><span class="zh-only">檢查產出</span></div>
+      <div class="touch-desc"><span class="en-only">Check that nothing was lost from the original, and flag visual issues.</span><span class="zh-only">確認內容沒有遺漏，標記視覺問題。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 SORTING -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">04</span>
+    <span class="section-title">
+      <span class="en-only">Sorting 44K AI Personalization materials</span>
+      <span class="zh-only">44K AI Personalization 教材分類</span>
+    </span>
+    <span class="section-kicker">
+      <span class="en-only">Priority sorting</span>
+      <span class="zh-only">優先級排序</span>
+    </span>
+  </div>
+
+  <p class="lede">
+    <span class="en-only">Not every old material deserves rebuilding. We score each one, then sort into four groups.</span>
+    <span class="zh-only">不是每份老教材都值得重做。我們評分後分成四組。</span>
+  </p>
+
+  <div class="triage-axis">
+    <div class="axis-title">
+      <span class="en-only">Scored on three signals</span>
+      <span class="zh-only">三個評分信號</span>
+    </div>
+    <div class="axis-list">
+      <div class="axis-item">
+        <div class="ax-label"><span class="en-only">Usage</span><span class="zh-only">使用率</span></div>
+        <div class="ax-text">
+          <span class="en-only">How often it was used in the last 6 months.</span>
+          <span class="zh-only">過去 6 個月被開課的次數。</span>
+        </div>
+      </div>
+      <div class="axis-item">
+        <div class="ax-label"><span class="en-only">Freshness</span><span class="zh-only">鮮度</span></div>
+        <div class="ax-text">
+          <span class="en-only">How old it is, and whether it mentions outdated facts.</span>
+          <span class="zh-only">教材年份、是否引用過時內容。</span>
+        </div>
+      </div>
+      <div class="axis-item">
+        <div class="ax-label"><span class="en-only">Quality</span><span class="zh-only">品質</span></div>
+        <div class="ax-text">
+          <span class="en-only">Student review, completion rate, teacher feedback.</span>
+          <span class="zh-only">學生評分、完課率、老師回饋。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="matrix-wrap">
+    <div class="matrix-y-label"><span class="en-only">Usage frequency</span><span class="zh-only">使用頻率</span></div>
+    <div class="matrix-grid">
+      <div class="matrix-cell deprecate">
+        <div>
+          <span class="cell-tag">Deprecate</span>
+          <div class="cell-title"><span class="en-only">Take offline</span><span class="zh-only">下架</span></div>
+          <div class="cell-rule">
+            <span class="en-only">Low usage + outdated. Stop spending here.</span>
+            <span class="zh-only">低使用 + 老舊。停止投入資源。</span>
+          </div>
+        </div>
+      </div>
+      <div class="matrix-cell watch">
+        <div>
+          <span class="cell-tag">Watch</span>
+          <div class="cell-title"><span class="en-only">Leave alone</span><span class="zh-only">暫不處理</span></div>
+          <div class="cell-rule">
+            <span class="en-only">Low usage but content OK. Revisit if usage rises.</span>
+            <span class="zh-only">低使用但內容可用，使用率上升再看。</span>
+          </div>
+        </div>
+      </div>
+      <div class="matrix-cell do">
+        <div>
+          <span class="cell-tag">Do</span>
+          <div class="cell-title"><span class="en-only">Priority batch</span><span class="zh-only">優先批次</span></div>
+          <div class="cell-rule">
+            <span class="en-only">High usage, dated content. Clearest ROI.</span>
+            <span class="zh-only">高使用 + 內容老舊。ROI 最清楚。</span>
+          </div>
+        </div>
+      </div>
+      <div class="matrix-cell defer">
+        <div>
+          <span class="cell-tag">Defer</span>
+          <div class="cell-title"><span class="en-only">Schedule later</span><span class="zh-only">之後再做</span></div>
+          <div class="cell-rule">
+            <span class="en-only">High usage, content fine. Visual refresh only.</span>
+            <span class="zh-only">高使用、內容沒問題。純視覺翻新。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="matrix-x-label">
+      <span><span class="en-only">Outdated content</span><span class="zh-only">內容老舊</span></span>
+      <span><span class="en-only">Fresh content</span><span class="zh-only">內容新</span></span>
+    </div>
+  </div>
+
+  <div class="triage-result">
+    <div class="tr-num">40-60<span style="font-size: 24px; vertical-align: super;">%</span></div>
+    <div class="tr-text">
+      <span class="en-only">Estimated share of the 44K library that ends up in <strong>Watch</strong> or <strong>Deprecate</strong> — work we don't have to do at all.</span>
+      <span class="zh-only">估計 44K 教材中會被歸到 <strong>Watch</strong> 或 <strong>Deprecate</strong> 的比例——這些工作我們完全不需要做。</span>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ROADMAP -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">05</span>
+    <span class="section-title">
+      <span class="en-only">Three phases, gated by results</span>
+      <span class="zh-only">三階段執行，每階段都有檢核點</span>
+    </span>
+    <span class="section-kicker">Roadmap</span>
+  </div>
+
+  <p class="lede">
+    <span class="en-only">Each phase has clear go/no-go criteria. We commit to the next phase only when the previous one passes.</span>
+    <span class="zh-only">每個階段都有明確的 go/no-go 標準。前一階段通過，才進下一階段。</span>
+  </p>
+
+  <div class="roadmap">
+    <div class="roadmap-row">
+      <div class="phase">
+        <div class="phase-num">Phase 01</div>
+        <div class="phase-title"><span class="en-only">Proof of concept</span><span class="zh-only">POC 概念驗證</span></div>
+        <div class="phase-dur"><span class="en-only">6 weeks · 1 product</span><span class="zh-only">6 週 · 1 個產品</span></div>
+        <div class="phase-desc">
+          <span class="en-only">Oxford Speak Now (128 materials). Recent, clean, small enough to manage. The goal isn't to fix Oxford Speak Now itself — the goal is to <strong>build and prove the pipeline we'll use everywhere</strong>.</span>
+          <span class="zh-only">Oxford Speak Now（128 份）。產品新、結構乾淨、規模可控。目的不是修好 Oxford Speak Now 本身——目的是<strong>建立並驗證未來會用在所有產品線的 pipeline</strong>。</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">Phase 02</div>
+        <div class="phase-title"><span class="en-only">Rolling validation</span><span class="zh-only">滾動驗證</span></div>
+        <div class="phase-dur"><span class="en-only">Two parallel tracks</span><span class="zh-only">兩條 Track 並行</span></div>
+        <div class="phase-desc">
+          <span class="en-only">Once POC passes, we extend in two directions at once.</span>
+          <span class="zh-only">POC 通過後，雙線同時擴展。</span>
+        </div>
+        <div class="phase-tracks">
+          <div class="track-row">
+            <span class="tr-tag">Track A</span>
+            <span>
+              <span class="en-only">Roll visual refresh out to other product lines (Cambridge, NatGeo, Oxford Discover, Cambridge Prepare).</span>
+              <span class="zh-only">純視覺翻新擴展到其他產品線（Cambridge、NatGeo、Oxford Discover、Cambridge Prepare）。</span>
+            </span>
+          </div>
+          <div class="track-row">
+            <span class="tr-tag b">Track B</span>
+            <span>
+              <span class="en-only">Pilot visual + content on AI Personalization, starting with the Do group.</span>
+              <span class="zh-only">AI Personalization 試做視覺＋內容優化，從 Do 組開始。</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">Phase 03</div>
+        <div class="phase-title"><span class="en-only">Full rollout</span><span class="zh-only">全量 rollout</span></div>
+        <div class="phase-dur"><span class="en-only">Both tracks at scale</span><span class="zh-only">雙 Track 規模化</span></div>
+        <div class="phase-desc">
+          <span class="en-only">Process the full Do group in batches. Run scheduled refreshes for Defer. Retire the Deprecate set.</span>
+          <span class="zh-only">Do 組全量批次處理。Defer 組排程進行翻新。Deprecate 組下架。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 POC PLAN -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">06</span>
+    <span class="section-title"><span class="en-only">POC plan — next 6 weeks</span><span class="zh-only">POC 計畫——未來 6 週</span></span>
+    <span class="section-kicker"><span class="en-only">What you'll see</span><span class="zh-only">你會看到什麼</span></span>
+  </div>
+
+  <p class="lede">
+    <span class="en-only"><strong style="color: var(--abc-main-blue); font-weight: 600;">Three checkpoints</strong>. You don't wait until the end to know.</span>
+    <span class="zh-only"><strong style="color: var(--abc-main-blue); font-weight: 600;">三個檢核點</strong>。不用等到最後才知道結果。</span>
+  </p>
+
+  <div class="poc-grid">
+    <div class="poc-week">W0</div>
+    <div class="poc-detail">
+      <div class="activity"><span class="en-only">Kick-off</span><span class="zh-only">啟動</span></div>
+      <div class="activity-desc"><span class="en-only">Team in place. Scope locked.</span><span class="zh-only">團隊到位。範圍確認。</span></div>
+    </div>
+
+    <div class="poc-week">W1 — W2</div>
+    <div class="poc-detail">
+      <div class="activity"><span class="en-only">Build pipeline + visual standard</span><span class="zh-only">建 pipeline + 視覺規範</span></div>
+      <div class="activity-desc"><span class="en-only">Two parallel work streams. Engineers build the AI pipeline. Designers and curriculum leads define the visual standard for Oxford Speak Now.</span><span class="zh-only">雙線並行：工程師建 AI pipeline；設計師與課程主管定義 Oxford Speak Now 的視覺規範。</span></div>
+    </div>
+
+    <div class="poc-week">W3</div>
+    <div class="poc-detail gate">
+      <span class="gate-label"><span class="en-only">Checkpoint 1 · Demo</span><span class="zh-only">檢核點 1 · Demo</span></span>
+      <div class="activity"><span class="en-only">First 10 materials rendered end-to-end</span><span class="zh-only">前 10 份教材完整跑完</span></div>
+      <div class="activity-desc"><span class="en-only">First real output. We review with you, then adjust prompts, templates and visual standard.</span><span class="zh-only">第一批實際產出。和你一起 review，調整 prompts、版型、視覺規範。</span></div>
+      <div class="activity-criteria">
+        <b><span class="en-only">Pass criteria</span><span class="zh-only">通過標準</span></b>
+        <span class="en-only">Pipeline runs end-to-end without manual rescue. Visual quality is good enough to keep improving on.</span>
+        <span class="zh-only">Pipeline 端到端跑通，不需要人工救火。視覺品質達到可繼續優化的水準。</span>
+      </div>
+    </div>
+
+    <div class="poc-week">W4 — W5</div>
+    <div class="poc-detail">
+      <div class="activity"><span class="en-only">Fine-tune + scale to 50 materials</span><span class="zh-only">微調 + 擴跑到 50 份</span></div>
+      <div class="activity-desc"><span class="en-only">Apply what we learned at Checkpoint 1. Measure quality, cost per material, and human time spent.</span><span class="zh-only">套用檢核點 1 的學習。量測品質、單份成本、人工耗時。</span></div>
+    </div>
+
+    <div class="poc-week">W5</div>
+    <div class="poc-detail gate">
+      <span class="gate-label"><span class="en-only">Checkpoint 2 · Review</span><span class="zh-only">檢核點 2 · Review</span></span>
+      <div class="activity"><span class="en-only">50-material quality review</span><span class="zh-only">50 份品質檢視</span></div>
+      <div class="activity-desc"><span class="en-only">Side-by-side comparison: old vs new. Teacher and content team feedback. Continue, or adjust the plan.</span><span class="zh-only">新舊版並排比對。老師與內容團隊回饋。繼續往下，或調整計畫。</span></div>
+    </div>
+
+    <div class="poc-week">W6</div>
+    <div class="poc-detail gate">
+      <span class="gate-label"><span class="en-only">Checkpoint 3 · Go / no-go</span><span class="zh-only">檢核點 3 · Go / no-go</span></span>
+      <div class="activity"><span class="en-only">Full 128 materials complete · Decision point</span><span class="zh-only">128 份完整完成 · 決策點</span></div>
+      <div class="activity-desc"><span class="en-only">Final report: quality numbers, cost per material, projected timeline for Phase 02.</span><span class="zh-only">最終報告：品質數據、單份成本、Phase 02 預估時程。</span></div>
+      <div class="activity-criteria">
+        <b><span class="en-only">Go criteria</span><span class="zh-only">通過標準</span></b>
+        <span class="en-only">Quality bar met. Cost on target. Visual standard works for at least one more product line.</span>
+        <span class="zh-only">品質達標。成本符合預期。視覺規範至少能套用到一個其他產品線。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 EFFORT -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">07</span>
+    <span class="section-title"><span class="en-only">Human work per material</span><span class="zh-only">每份教材的人工投入</span></span>
+    <span class="section-kicker"><span class="en-only">Effort estimate</span><span class="zh-only">工時估算</span></span>
+  </div>
+
+  <p class="lede">
+    <span class="en-only">A typical 15-page material. Pure visual track.</span>
+    <span class="zh-only">以一份 15 頁的教材為例，純視覺 Track。</span>
+  </p>
+
+  <div class="effort-compare">
+    <div class="effort-card">
+      <div class="e-mode"><span class="en-only">Today · manual rework</span><span class="zh-only">目前：純人工翻新</span></div>
+      <div class="e-num">7 — 15<span style="font-size: 20px; vertical-align: super;"><span class="en-only">hrs</span><span class="zh-only">hr</span></span></div>
+      <div class="e-unit"><span class="en-only">per 15-page material</span><span class="zh-only">每份 15 頁</span></div>
+      <div class="e-breakdown">
+        <div class="e-row"><span><span class="en-only">Designer redesigns each page</span><span class="zh-only">設計師逐頁重做</span></span><span class="e-time">~30-60 min × 15</span></div>
+        <div class="e-row"><span><span class="en-only">Internal review &amp; revisions</span><span class="zh-only">內部 review 與修改</span></span><span class="e-time"><span class="en-only">included</span><span class="zh-only">含</span></span></div>
+        <div class="e-row"><span><span class="en-only">Re-export to platform</span><span class="zh-only">重新輸出到平台</span></span><span class="e-time"><span class="en-only">included</span><span class="zh-only">含</span></span></div>
+      </div>
+    </div>
+
+    <div class="effort-card highlighted">
+      <div class="e-mode"><span class="en-only">With this pipeline</span><span class="zh-only">使用此 pipeline</span></div>
+      <div class="e-num">~ 10 — 12<span style="font-size: 20px; vertical-align: super;"><span class="en-only">min</span><span class="zh-only">min</span></span></div>
+      <div class="e-unit"><span class="en-only">per 15-page material</span><span class="zh-only">每份 15 頁</span></div>
+      <div class="e-breakdown">
+        <div class="e-row"><span><span class="en-only">Upload material</span><span class="zh-only">上傳教材</span></span><span class="e-time">&lt; 5 min</span></div>
+        <div class="e-row"><span><span class="en-only">AI runs the flow</span><span class="zh-only">AI 跑全流程</span></span><span class="e-time"><span class="en-only">automated</span><span class="zh-only">自動</span></span></div>
+        <div class="e-row"><span><span class="en-only">QA sample review</span><span class="zh-only">QA 抽樣審查</span></span><span class="e-time">~ 4 min</span></div>
+        <div class="e-row"><span><span class="en-only">Fix flagged issues</span><span class="zh-only">修補標記問題</span></span><span class="e-time">~ 3 min</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="savings-callout">
+    <div class="s-num">95<span style="font-size: 28px; vertical-align: super;">%+</span></div>
+    <div class="s-text">
+      <span class="en-only">Less human time per material. <strong>This is what makes 46K materials doable.</strong></span>
+      <span class="zh-only">每份教材的人工時間大幅減少。<strong>這就是 46K 份教材可以完成的關鍵。</strong></span>
+    </div>
+  </div>
+
+  <p class="above-stack-label" style="margin: 28px 0 6px; color: var(--abc-dark-pink);">
+    <span class="en-only">Track B (visual + content) adds review time by tier</span>
+    <span class="zh-only">Track B（視覺＋內容）依層級加上審稿時間</span>
+  </p>
+
+  <div style="border-top: 1.5px solid var(--abc-dark-pink); margin-top: 4px;">
+    <div class="tier-row">
+      <span class="tier-tag">Tier 1</span>
+      <span class="tier-name"><span class="en-only">Safe fixes — typos, dates, formatting</span><span class="zh-only">安全修補——typo、年份、格式</span></span>
+      <span class="tier-handling"><span class="en-only">AI auto-fixes + sample check. Same effort as Track A.</span><span class="zh-only">AI 自動修 + 抽樣檢查。和 Track A 相同工時。</span></span>
+    </div>
+    <div class="tier-row">
+      <span class="tier-tag">Tier 2</span>
+      <span class="tier-name"><span class="en-only">Structural — clearer examples, better flow</span><span class="zh-only">結構優化——更清楚的例子、更好的流暢度</span></span>
+      <span class="tier-handling"><span class="en-only">AI drafts, content editor reviews. Add ~3-5 min per page checked.</span><span class="zh-only">AI 草稿、內容編輯審稿。每頁加 ~3-5 分鐘。</span></span>
+    </div>
+    <div class="tier-row">
+      <span class="tier-tag">Tier 3</span>
+      <span class="tier-name"><span class="en-only">Substantial rewrite — material no longer fit</span><span class="zh-only">大幅重寫——內容已不適用</span></span>
+      <span class="tier-handling"><span class="en-only">Editor handles. Closer to manual editing time. Most cases here likely fall in Deprecate.</span><span class="zh-only">編輯處理。接近傳統編輯時間。多數此類案件預期會落在 Deprecate。</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 08 RISKS -->
+<section class="brief-section">
+  <div class="section-marker">
+    <span class="section-num">08</span>
+    <span class="section-title"><span class="en-only">Risks &amp; open questions</span><span class="zh-only">風險與待解問題</span></span>
+    <span class="section-kicker"><span class="en-only">Tracking</span><span class="zh-only">追蹤中</span></span>
+  </div>
+
+  <p class="lede">
+    <span class="en-only">Risks we know about. None is a blocker; each has a plan in motion.</span>
+    <span class="zh-only">我們已知的風險。沒有任何一項是 blocker；每項都有對應計畫。</span>
+  </p>
+
+  <div class="risks">
+    <div class="risk">
+      <div class="r-name"><span class="en-only">Licensing on branded content</span><span class="zh-only">品牌內容授權</span></div>
+      <div class="r-desc"><span class="en-only">Oxford, Cambridge and NatGeo have brand guidelines for how their content is presented. May need approval.</span><span class="zh-only">Oxford、Cambridge、NatGeo 對教材呈現有品牌規範，可能需要授權確認。</span></div>
+      <div class="r-mit"><em>Action.</em> <span class="en-only">Legal &amp; BD review in parallel with POC. We assume approval for POC scope, and confirm before scaling.</span><span class="zh-only">法務與 BD 在 POC 階段並行確認。POC 範圍假設可行，擴大規模前先取得確認。</span></div>
+    </div>
+
+    <div class="risk">
+      <div class="r-name"><span class="en-only">Teacher adaptation</span><span class="zh-only">老師適應</span></div>
+      <div class="r-desc"><span class="en-only">New visuals mean teachers need to re-learn. A bad launch creates classroom problems.</span><span class="zh-only">新視覺需要老師重新熟悉。Rollout 沒做好會在課堂上出問題。</span></div>
+      <div class="r-mit"><em>Action.</em> <span class="en-only">Phased launch per product line. Teacher preview window with notes.</span><span class="zh-only">按產品線分階段 rollout。設老師預覽期，並附上更新說明。</span></div>
+    </div>
+
+    <div class="risk">
+      <div class="r-name"><span class="en-only">Content quality on Track B</span><span class="zh-only">Track B 內容品質</span></div>
+      <div class="r-desc"><span class="en-only">AI-assisted content edits risk subtle errors or shifts in difficulty.</span><span class="zh-only">AI 輔助內容編輯有風險，可能產生細微錯誤或難度偏移。</span></div>
+      <div class="r-mit"><em>Action.</em> <span class="en-only">AI auto-handles only safe edits like typos. Anything beyond that requires content editor review. Every batch is sampled before release.</span><span class="zh-only">AI 只自動處理安全修補（如 typo）。其他變動都需要內容編輯審稿。每批上線前都會抽樣檢查。</span></div>
+    </div>
+
+    <div class="risk">
+      <div class="r-name"><span class="en-only">Editing after launch</span><span class="zh-only">上線後的編輯</span></div>
+      <div class="r-desc"><span class="en-only">Content team will want to edit materials after launch. Re-running the full pipeline for small fixes is wasteful.</span><span class="zh-only">內容團隊上線後會想編輯教材。為了小修改重跑整條 pipeline 太浪費。</span></div>
+      <div class="r-mit"><em>Action.</em> <span class="en-only">A simple HTML editor delivered with Phase 02. Scope finalized after POC.</span><span class="zh-only">Phase 02 同步交付一個簡易 HTML 編輯器。POC 結束後確認 scope。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="brief-footer">
+  <span><span class="en-only">TutorABC · R&amp;D · Materials AI Modernization</span><span class="zh-only">TutorABC · R&amp;D · 教材 AI 翻新計畫</span></span>
+  <span class="f-end"><span class="en-only">Ready to begin on your go.</span><span class="zh-only">等你一聲令下，立即啟動。</span></span>
+  <span><span class="en-only">Briefing v5 · 08 May 2026</span><span class="zh-only">Briefing v5 · 2026/05/08</span></span>
+</footer>
+
+</div>
+
+<script>
+  function toggleLang() {
+    const body = document.body;
+    const html = document.documentElement;
+    if (body.classList.contains('lang-zh')) {
+      body.classList.remove('lang-zh');
+      body.classList.add('lang-en');
+      html.lang = 'en';
+    } else {
+      body.classList.remove('lang-en');
+      body.classList.add('lang-zh');
+      html.lang = 'zh-Hant';
+    }
+  }
+</script>
+</body>
+</html>
